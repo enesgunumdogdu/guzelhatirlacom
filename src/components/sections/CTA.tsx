@@ -1,9 +1,9 @@
 import { useState, type FormEvent } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowUpRight, Check, Loader2 } from 'lucide-react'
+import { ArrowUpRight, Check, Loader2, AlertCircle } from 'lucide-react'
 import { Button } from '../ui/Button'
 
-type SubmitState = 'idle' | 'loading' | 'success'
+type SubmitState = 'idle' | 'loading' | 'success' | 'error'
 
 export function CTA() {
   const [email, setEmail] = useState('')
@@ -13,14 +13,27 @@ export function CTA() {
     e.preventDefault()
     setSubmitState('loading')
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          'form-name': 'newsletter',
+          email: email,
+        }).toString(),
+      })
 
-    setSubmitState('success')
-    setEmail('')
-
-    // Reset after 3 seconds
-    setTimeout(() => setSubmitState('idle'), 3000)
+      if (response.ok) {
+        setSubmitState('success')
+        setEmail('')
+        setTimeout(() => setSubmitState('idle'), 3000)
+      } else {
+        throw new Error('Form submission failed')
+      }
+    } catch {
+      setSubmitState('error')
+      setTimeout(() => setSubmitState('idle'), 3000)
+    }
   }
 
   return (
@@ -39,9 +52,17 @@ export function CTA() {
           Lansman tarihi yaklaştığında size haber verelim.
         </p>
 
-        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
+        <form
+          name="newsletter"
+          method="POST"
+          data-netlify="true"
+          onSubmit={handleSubmit}
+          className="flex flex-col sm:flex-row gap-4"
+        >
+          <input type="hidden" name="form-name" value="newsletter" />
           <input
             type="email"
+            name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="E-posta adresiniz"
@@ -71,6 +92,12 @@ export function CTA() {
               <>
                 Kaydedildi
                 <Check className="w-5 h-5" />
+              </>
+            )}
+            {submitState === 'error' && (
+              <>
+                Hata oluştu
+                <AlertCircle className="w-5 h-5" />
               </>
             )}
           </Button>
