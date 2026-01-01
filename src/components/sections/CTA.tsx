@@ -13,14 +13,15 @@ export function CTA() {
     e.preventDefault()
     setSubmitState('loading')
 
+    const formData = new FormData()
+    formData.append('form-name', 'newsletter')
+    formData.append('email', email)
+
     try {
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-          'form-name': 'newsletter',
-          email: email,
-        }).toString(),
+        body: new URLSearchParams(formData as unknown as Record<string, string>).toString(),
       })
 
       if (response.ok) {

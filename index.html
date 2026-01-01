@@ -17,9 +17,8 @@
     <title>Güzel Hatırla - Dijital Anı Bahçesi</title>
   </head>
   <body>
-    <!-- Netlify Forms: Hidden form for bot detection -->
-    <form name="newsletter" netlify netlify-honeypot="bot-field" hidden>
-      <input type="text" name="bot-field" />
+    <!-- Netlify Forms: Hidden form for build-time detection -->
+    <form name="newsletter" netlify hidden>
       <input type="email" name="email" />
     </form>
 
