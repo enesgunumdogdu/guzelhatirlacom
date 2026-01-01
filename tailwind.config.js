@@ -33,8 +33,13 @@ export default {
         'float': 'float 20s ease-in-out infinite',
         'pulse-slow': 'pulse 3s ease-in-out infinite',
         'gradient': 'gradient 4s ease infinite',
+        'heartbeat': 'heartbeat 2s ease-in-out infinite',
       },
       keyframes: {
+        heartbeat: {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.2)' },
+        },
         float: {
           '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
           '25%': { transform: 'translate(30px, -30px) rotate(5deg)' },

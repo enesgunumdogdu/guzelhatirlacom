@@ -24,18 +24,18 @@ export function CTA() {
   }
 
   return (
-    <section className="py-24 px-6">
+    <section className="py-16 md:py-24 px-5">
       <motion.div
-        className="max-w-xl mx-auto text-center"
+        className="max-w-2xl mx-auto text-center"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+        <h2 className="text-4xl md:text-5xl font-bold mb-4 md:mb-6 text-white">
           Haberdar Olun
         </h2>
-        <p className="text-lg text-white/60 mb-10">
+        <p className="text-xl md:text-2xl text-white/60 mb-10 md:mb-12">
           Lansman tarihi yaklaştığında size haber verelim.
         </p>
 
@@ -47,12 +47,13 @@ export function CTA() {
             placeholder="E-posta adresiniz"
             required
             disabled={submitState === 'loading'}
-            className="flex-1 px-5 py-4 glass rounded-xl text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-primary-500/50 transition-all disabled:opacity-50"
+            className="flex-1 px-6 py-5 text-lg glass rounded-xl text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-primary-500/50 transition-all disabled:opacity-50"
           />
           <Button
             type="submit"
             disabled={submitState === 'loading'}
-            className="min-w-[180px]"
+            size="lg"
+            className="min-w-[200px] text-lg"
           >
             {submitState === 'idle' && (
               <>
@@ -75,7 +76,7 @@ export function CTA() {
           </Button>
         </form>
 
-        <p className="mt-4 text-sm text-white/40">
+        <p className="mt-6 text-base text-white/40">
           Spam yapmayız, söz.
         </p>
       </motion.div>

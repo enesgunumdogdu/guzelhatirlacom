@@ -44,20 +44,20 @@ const cardVariants = {
 
 export function Features() {
   return (
-    <section className="py-24 px-6">
+    <section className="py-16 md:py-24 px-5">
       <div className="max-w-6xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-16"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-12 md:mb-16"
         >
           <GradientText>Neden Güzel Hatırla?</GradientText>
         </motion.h2>
 
         <motion.div
-          className="grid md:grid-cols-3 gap-8"
+          className="grid md:grid-cols-3 gap-6 md:gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -68,15 +68,15 @@ export function Features() {
               key={feature.title}
               variants={cardVariants}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="group glass rounded-3xl p-8 text-center hover:border-primary-500/50 transition-colors duration-300"
+              className="group glass rounded-3xl p-8 md:p-10 text-center hover:border-primary-500/50 transition-colors duration-300"
             >
-              <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <feature.icon className="w-8 h-8 text-white" strokeWidth={1.5} />
+              <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <feature.icon className="w-10 h-10 text-white" strokeWidth={1.5} />
               </div>
-              <h3 className="text-xl font-semibold mb-4 text-white">
+              <h3 className="text-2xl md:text-2xl font-semibold mb-4 text-white">
                 {feature.title}
               </h3>
-              <p className="text-white/60 leading-relaxed">
+              <p className="text-lg text-white/60 leading-relaxed">
                 {feature.description}
               </p>
             </motion.div>
